@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="photos/dışarıdan.jpeg">
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -34,7 +35,7 @@
         <div class="cta reveal" data-anim="zoom">
           <a class="btn primary qr-link" href="#">QR Menüye Git</a>
           <div class="qr-wrap">
-            <img id="qrImage" alt="QR ile menüye git" />
+            <img id="qrImage" alt="QR ile menüye git" loading="lazy" decoding="async" width="128" height="128" />
             <span>Menüyü telefonla açmak için okutun</span>
           </div>
         </div>
@@ -58,7 +59,7 @@
       </div>
     </section>
 
-    <section id="vibes" class="parallax mid" style="background-image: url('photos/kafeici.jpeg');">
+    <section id="vibes" class="parallax mid" data-bg="photos/kafeici.jpeg">
       <div class="overlay soft"></div>
       <div class="parallax-content">
         <h3 class="reveal" data-anim="fade-left">İç ısıtan kahverengi tema</h3>
@@ -86,7 +87,7 @@
       </div>
     </section>
 
-    <section class="parallax low" style="background-image: url('photos/kafeici2.webp');">
+    <section class="parallax low" data-bg="photos/kafeici2.webp">
       <div class="overlay strong"></div>
       <div class="parallax-content">
         <h3 class="reveal" data-anim="fade-up">Her yudumda sıcaklık</h3>

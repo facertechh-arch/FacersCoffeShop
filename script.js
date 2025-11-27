@@ -24,12 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const fxSections = document.querySelectorAll('.parallax');
-  const onScroll = () => {
-    const y = window.scrollY || window.pageYOffset;
+  let lastY = 0;
+  let ticking = false;
+  const updateParallax = () => {
     fxSections.forEach(sec => {
-      sec.style.backgroundPosition = `center ${-y * 0.08}px`;
+      sec.style.backgroundPosition = `center ${-lastY * 0.08}px`;
     });
+    ticking = false;
   };
+  const onScroll = () => {
+    lastY = window.scrollY || window.pageYOffset;
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateParallax);
+    }
+  };
+  onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
   // Ambiyans ses kontrolü
@@ -97,4 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (qrModal) qrModal.addEventListener('click', (e) => { if (e.target === qrModal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  const bgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const src = el.getAttribute('data-bg');
+        if (src) {
+          el.style.backgroundImage = `url('${src}')`;
+          el.removeAttribute('data-bg');
+        }
+        bgObserver.unobserve(el);
+      }
+    });
+  }, { rootMargin: '200px' });
+  document.querySelectorAll('.parallax[data-bg]').forEach(el => bgObserver.observe(el));
 });
