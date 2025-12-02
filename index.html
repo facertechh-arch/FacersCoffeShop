@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Facer Coffe Shop</title>
+    <!-- Favicon - 404 hatasını engelle -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>☕</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,13 +19,20 @@
           <span class="logo">☕</span>
           <h1>Facer Coffe Shop</h1>
         </div>
-        <nav class="nav">
+        <div class="header-actions">
+          <button class="audio-toggle" type="button" aria-pressed="false" aria-label="Müziği oynat/durdur" title="Müziği oynat/durdur">▶</button>
+          <button class="burger-menu-btn" aria-label="Menüyü Aç" aria-expanded="false" aria-controls="nav-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <nav class="nav" id="nav-menu">
           <a href="#about">Hakkımızda</a>
           <a href="#vibes">Atmosfer</a>
           <a href="#" class="qr-link">QR Menü</a>
           <a href="#contact">İletişim</a>
         </nav>
-        <button class="audio-toggle" type="button" aria-pressed="false" aria-label="Müziği oynat/durdur" title="Müziği oynat/durdur">▶</button>
       </div>
     </header>
 
@@ -145,7 +154,18 @@
       </div>
     </div>
 
-    <audio id="ambientAudio" src="back music.mp3" loop autoplay></audio>
+    <!-- Nav backdrop overlay -->
+    <div id="navBackdrop" class="nav-backdrop"></div>
+
+    <!-- Scroll to top button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Yukarıya Git" title="Yukarıya Git">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <!-- Ambient Audio - Single source only -->
+    <audio id="ambientAudio" src="back music.mp3" loop></audio>
     <script src="script.js"></script>
   </body>
   </html>

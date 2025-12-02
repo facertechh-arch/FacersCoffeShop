@@ -1,4 +1,87 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // === STRICT AUDIO HANDLING === 
+  // Tüm diğer audio elemanlarını dur ve sil (duplicate ses sorunu için)
+  const allAudioElements = document.querySelectorAll('audio');
+  let primaryAudio = null;
+  
+  if (allAudioElements.length > 1) {
+    console.warn(`⚠️ Multiple audio elements found (${allAudioElements.length}). Removing duplicates...`);
+    allAudioElements.forEach((audio, index) => {
+      if (index === 0) {
+        primaryAudio = audio;
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.remove();
+      }
+    });
+  } else if (allAudioElements.length === 1) {
+    primaryAudio = allAudioElements[0];
+  }
+  
+  // Primary audio'yu kontrol altına al
+  if (primaryAudio) {
+    primaryAudio.id = 'ambientAudio';
+    primaryAudio.pause(); // Başında durdur
+    primaryAudio.currentTime = 0;
+  }
+
+  // Burger Menu kontrolü
+  const burgerBtn = document.querySelector('.burger-menu-btn');
+  const nav = document.getElementById('nav-menu');
+  const navBackdrop = document.getElementById('navBackdrop');
+  
+  if (burgerBtn && nav && navBackdrop) {
+    const toggleMenu = () => {
+      const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
+      burgerBtn.setAttribute('aria-expanded', !isExpanded);
+      nav.classList.toggle('active');
+      navBackdrop.classList.toggle('active');
+    };
+
+    burgerBtn.addEventListener('click', toggleMenu);
+
+    // Menü linkine tıklandığında menüyü kapat
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('active');
+        navBackdrop.classList.remove('active');
+      });
+    });
+
+    // Backdrop'a tıklandığında menüyü kapat
+    navBackdrop.addEventListener('click', toggleMenu);
+
+    // Dış tarafta tıklandığında menüyü kapat
+    document.addEventListener('click', (e) => {
+      if (!burgerBtn.contains(e.target) && !nav.contains(e.target) && !navBackdrop.contains(e.target)) {
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('active');
+        navBackdrop.classList.remove('active');
+      }
+    });
+  }
+
+  // Scroll to Top Button
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -42,57 +125,68 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Ambiyans ses kontrolü
+  // === AUDIO CONTROL (STRICT) ===
   const audioBtn = document.querySelector('.audio-toggle');
-  const ambient = document.getElementById('ambientAudio');
-  if (ambient) ambient.volume = 0.5;
+  const ambient = primaryAudio || document.getElementById('ambientAudio');
+  
   if (audioBtn && ambient) {
+    ambient.volume = 0.7;
+    
     const setIcon = () => {
       const pressed = audioBtn.getAttribute('aria-pressed') === 'true';
       audioBtn.textContent = pressed ? '⏸' : '▶';
     };
-    // Autoplay: sayfa yüklenince çalmayı dene
-    (async () => {
-      try {
-        await ambient.play();
-        audioBtn.setAttribute('aria-pressed', 'true');
-      } catch (e) {
-        // Autoplay engeli olabilir; ilk etkileşimde tekrar deneyeceğiz
-      } finally {
-        setIcon();
-      }
-    })();
 
-    // Fallback: ilk scroll veya ilk tıklamada oynatmayı dene (bir kez)
-    const tryPlayOnce = async () => {
-      if (ambient.paused) {
-        try {
-          await ambient.play();
-          audioBtn.setAttribute('aria-pressed', 'true');
-          setIcon();
-        } catch {}
-      }
-      window.removeEventListener('scroll', tryPlayOnce);
-      window.removeEventListener('click', tryPlayOnce);
-    };
-    window.addEventListener('scroll', tryPlayOnce, { once: true });
-    window.addEventListener('click', tryPlayOnce, { once: true });
-
-    // Buton kontrolü
+    // Başlangıç durumu
+    audioBtn.setAttribute('aria-pressed', 'false');
+    ambient.pause();
+    ambient.currentTime = 0;
     setIcon();
-    audioBtn.addEventListener('click', async () => {
+
+    // Buton tıklama kontrolü
+    audioBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
       const pressed = audioBtn.getAttribute('aria-pressed') === 'true';
-      if (!pressed) {
-        try {
+      
+      try {
+        if (!pressed) {
+          // Oynat
           await ambient.play();
           audioBtn.setAttribute('aria-pressed', 'true');
-        } catch (e) {
-          // Autoplay engeli varsa pressed'i değiştirme
+          console.log('🔊 Audio started');
+        } else {
+          // Durdur
+          ambient.pause();
+          audioBtn.setAttribute('aria-pressed', 'false');
+          console.log('🔇 Audio stopped');
         }
-      } else {
-        ambient.pause();
+      } catch (error) {
+        console.error('❌ Audio error:', error);
         audioBtn.setAttribute('aria-pressed', 'false');
       }
+      setIcon();
+    });
+
+    // Audio event listeners
+    ambient.addEventListener('play', () => {
+      if (audioBtn.getAttribute('aria-pressed') !== 'true') {
+        audioBtn.setAttribute('aria-pressed', 'true');
+        setIcon();
+      }
+    });
+
+    ambient.addEventListener('pause', () => {
+      if (audioBtn.getAttribute('aria-pressed') === 'true') {
+        audioBtn.setAttribute('aria-pressed', 'false');
+        setIcon();
+      }
+    });
+
+    ambient.addEventListener('error', (e) => {
+      console.error('❌ Audio playback error:', e);
+      audioBtn.setAttribute('aria-pressed', 'false');
       setIcon();
     });
   }
