@@ -1,171 +1,389 @@
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Facer Coffe Shop</title>
-    <!-- Favicon - 404 hatasını engelle -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>☕</text></svg>" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="photos/dışarıdan.jpeg">
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <div class="brand">
-          <span class="logo">☕</span>
-          <h1>Facer Coffe Shop</h1>
-        </div>
-        <div class="header-actions">
-          <button class="audio-toggle" type="button" aria-pressed="false" aria-label="Müziği oynat/durdur" title="Müziği oynat/durdur">▶</button>
-          <button class="burger-menu-btn" aria-label="Menüyü Aç" aria-expanded="false" aria-controls="nav-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-        <nav class="nav" id="nav-menu">
-          <a href="#about">Hakkımızda</a>
-          <a href="#vibes">Atmosfer</a>
-          <a href="#" class="qr-link">QR Menü</a>
-          <a href="#contact">İletişim</a>
-        </nav>
-      </div>
-    </header>
 
-    <section class="hero parallax" style="background-image: url('photos/dışarıdan.jpeg');">
-      <div class="overlay"></div>
-      <div class="hero-content">
-        <h2 class="reveal" data-anim="fade-up">Sıcak bir kahve molasına hoş geldiniz</h2>
-        <p class="reveal blur" data-anim="fade-up">Şehrin kalbinde, iç ısıtan kahverengi tonlarda bir deneyim.</p>
-        <div class="cta reveal" data-anim="zoom">
-          <a class="btn primary qr-link" href="#">QR Menüye Git</a>
-          <div class="qr-wrap">
-            <img id="qrImage" alt="QR ile menüye git" loading="lazy" decoding="async" width="128" height="128" />
-            <span>Menüyü telefonla açmak için okutun</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facer Coffe Shop</title>
+  <!-- Favicon - 404 hatasını engelle -->
 
-    <section id="about" class="section">
-      <div class="container grid">
-        <div class="card reveal" data-anim="fade-up">
-          <h3>Biz Kimiz?</h3>
-          <p>Facer Coffe Shop, kaliteli çekirdeklerle özenle hazırlanmış kahveleri, dost canlısı bir atmosferde sunar. Her yudumda sıcaklık ve dinginlik.</p>
-        </div>
-        <div class="card reveal" data-anim="fade-up">
-          <h3>Özenli Demleme</h3>
-          <p>Filtre, espresso ve üçüncü nesil demleme yöntemleriyle farklı tat profilleri. Lezzeti dengeleyen kavrum ve doğru öğütüm.</p>
-        </div>
-        <div class="card reveal" data-anim="fade-up">
-          <h3>Yan Lezzetler</h3>
-          <p>Taze kruvasanlar, ev yapımı tatlılar ve atıştırmalıklar kahvenize eşlik eder.</p>
-        </div>
-      </div>
-    </section>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>☕</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="preload" as="image" href="photos/dışarıdan.jpeg">
+  <meta property="og:title" content="Facer Coffe Shop - Şehrin Kalbinde Sıcak Bir Mola" />
+  <meta property="og:description"
+    content="Kaliteli kahve, taze tatlılar ve huzurlu bir atmosfer. Facer Coffee Shop'ta kendinize bir mola verin." />
+  <meta property="og:image" content="photos/kafeici.jpeg" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-    <section id="vibes" class="parallax mid" data-bg="photos/kafeici.jpeg">
-      <div class="overlay soft"></div>
-      <div class="parallax-content">
-        <h3 class="reveal" data-anim="fade-left">İç ısıtan kahverengi tema</h3>
-        <p class="reveal" data-anim="fade-right">Doğal dokular, yumuşak ışıklar ve sakin renk paleti ile huzurlu bir ambiyans.</p>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo">☕</span>
+        <h1>Facer Coffe Shop</h1>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="container grid">
-        <div class="feature reveal" data-anim="fade-up">
-          <div class="icon">🫘</div>
-          <h4>Seçkin Çekirdekler</h4>
-          <p>Bölge ve çiftlik seçimleriyle iz bırakan aromalar.</p>
-        </div>
-        <div class="feature reveal" data-anim="fade-up">
-          <div class="icon">🎵</div>
-          <h4>Yumuşak Müzikler</h4>
-          <p>Günün ritmine eşlik eden loş ve keyifli tınılar.</p>
-        </div>
-        <div class="feature reveal" data-anim="fade-up">
-          <div class="icon">🌿</div>
-          <h4>Doğal Dokular</h4>
-          <p>Ahşap, keten ve seramiklerle tamamlanan bir mekan hissi.</p>
-        </div>
+      <div class="header-actions">
+        <button class="audio-toggle" type="button" aria-pressed="false" aria-label="Müziği oynat/durdur"
+          title="Müziği oynat/durdur">▶</button>
+        <button class="burger-menu-btn" aria-label="Menüyü Aç" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button id="langBtn" class="lang-btn" aria-label="Dili Değiştir / Change Language">
+          <span class="lang-text">TR</span>
+        </button>
       </div>
-    </section>
+      <nav class="nav" id="nav-menu">
+        <a href="#about">Hakkımızda</a>
+        <a href="#vibes">Atmosfer</a>
+        <a href="#" class="qr-link">QR Menü</a>
+        <a href="#contact">İletişim</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="parallax low" data-bg="photos/kafeici2.webp">
-      <div class="overlay strong"></div>
-      <div class="parallax-content">
-        <h3 class="reveal" data-anim="fade-up">Her yudumda sıcaklık</h3>
-        <p class="reveal" data-anim="fade-up">Günün telaşından uzaklaş, kendine küçük bir mola ver.</p>
-      </div>
-    </section>
-
-    <footer id="contact" class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <h4>İletişim</h4>
-          <p>Adres: Şehir Merkezi, Facer Sokak No: 7</p>
-          <p>Telefon: 0 (xxx) xxx xx xx</p>
-        </div>
-        <div>
-          <h4>Çalışma Saatleri</h4>
-          <p>Hafta içi: 08:00 – 22:00</p>
-          <p>Hafta sonu: 09:00 – 23:00</p>
-        </div>
-        <div>
-          <h4>Bizi Takip Et</h4>
-          <div class="social">
-            <a class="social-btn instagram" href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"/>
-                <circle cx="12" cy="12" r="5"/>
-                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-            <a class="social-btn facebook" href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-                <path d="M15 3h-3a5 5 0 00-5 5v3H5v4h2v6h4v-6h3l1-4h-4V8a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-            <a class="social-btn x" href="#" aria-label="X">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4l16 16M20 4L4 20"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- QR menü seçim modalı -->
-    <div id="qrModal" class="modal-backdrop" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
-        <button class="modal-close" aria-label="Kapat">✕</button>
-        <h3 id="qrModalTitle">Menü Seçimi</h3>
-        <p>Fotoğraflı ya da fotoğrafsız menüden birini açın.</p>
-        <div class="modal-actions">
-          <a class="btn primary" href="menu-photo.html">Fotoğraflı Menü</a>
-          <a class="btn" href="menu.html">Fotoğrafsız Menü</a>
+  <section class="hero parallax" style="background-image: url('photos/dışarıdan.jpeg');">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h2 class="reveal" data-anim="fade-up">Sıcak bir kahve molasına hoş geldiniz</h2>
+      <p class="reveal blur" data-anim="fade-up">Şehrin kalbinde, iç ısıtan kahverengi tonlarda bir deneyim.</p>
+      <div class="cta reveal" data-anim="zoom">
+        <a class="btn primary qr-link" href="#">QR Menüye Git</a>
+        <div class="qr-wrap">
+          <img id="qrImage" alt="QR ile menüye git" loading="lazy" decoding="async" width="128" height="128" />
+          <span>Menüyü telefonla açmak için okutun</span>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Nav backdrop overlay -->
-    <div id="navBackdrop" class="nav-backdrop"></div>
+  <section id="about" class="section">
+    <div class="container grid">
+      <div class="card reveal" data-anim="fade-up">
+        <h3>Biz Kimiz?</h3>
+        <p>Facer Coffe Shop, kaliteli çekirdeklerle özenle hazırlanmış kahveleri, dost canlısı bir atmosferde sunar. Her
+          yudumda sıcaklık ve dinginlik.</p>
+      </div>
+      <div class="card reveal" data-anim="fade-up">
+        <h3>Özenli Demleme</h3>
+        <p>Filtre, espresso ve üçüncü nesil demleme yöntemleriyle farklı tat profilleri. Lezzeti dengeleyen kavrum ve
+          doğru öğütüm.</p>
+      </div>
+      <div class="card reveal" data-anim="fade-up">
+        <h3>Yan Lezzetler</h3>
+        <p>Taze kruvasanlar, ev yapımı tatlılar ve atıştırmalıklar kahvenize eşlik eder.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Scroll to top button -->
-    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Yukarıya Git" title="Yukarıya Git">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="18 15 12 9 6 15"></polyline>
-      </svg>
-    </button>
+  <section id="vibes" class="parallax mid" data-bg="photos/kafeici.jpeg">
+    <div class="overlay soft"></div>
+    <div class="parallax-content">
+      <h3 class="reveal" data-anim="fade-left">İç ısıtan kahverengi tema</h3>
+      <p class="reveal" data-anim="fade-right">Doğal dokular, yumuşak ışıklar ve sakin renk paleti ile huzurlu bir
+        ambiyans.</p>
+    </div>
+  </section>
 
-    <!-- Ambient Audio - Single source only -->
-    <audio id="ambientAudio" src="back music.mp3" loop></audio>
-    <script src="script.js"></script>
-  </body>
-  </html>
+  <!-- Signature Flavors Section -->
+  <section id="signature" class="section">
+    <div class="container">
+      <div class="section-header reveal" data-anim="fade-up">
+        <span class="sub-title">Sizin İçin Seçtiklerimiz</span>
+        <h2>İmza Lezzetler</h2>
+        <p>En çok tercih edilen, tadı damağınızda kalacak özel tatlar.</p>
+      </div>
+
+      <div class="signature-grid">
+        <div class="product-card reveal" data-anim="fade-up">
+          <div class="product-img">
+            <!-- Using photos from 'qr menü photos' but paths need to be web friendly usually -->
+            <!-- Assuming the server serves 'qr menü photos' as URL encoded path -->
+            <img src="qr_menu_photos/latte.jpg" alt="Özel Latte" loading="lazy" width="400" height="300">
+            <div class="badge">Favori</div>
+          </div>
+          <div class="product-info">
+            <h4>Facer Latte</h4>
+            <p>Yumuşak içim, özel kavrum espresso ve kadifemsi süt köpüğü.</p>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-anim="fade-up">
+          <div class="product-img">
+            <img src="qr_menu_photos/kruvasan.webp" alt="Taze Kruvasan" loading="lazy" width="400" height="300">
+          </div>
+          <div class="product-info">
+            <h4>Tereyağlı Kruvasan</h4>
+            <p>Her sabah taze pişen, çıtır çıtır katmanlar.</p>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-anim="fade-up">
+          <div class="product-img">
+            <img src="qr_menu_photos/cheesecake.avif" alt="San Sebastian Cheesecake" loading="lazy" width="400"
+              height="300">
+          </div>
+          <div class="product-info">
+            <h4>San Sebastian</h4>
+            <p>Akışkan dokusu ve karamelize üzeriyle eşsiz bir tatlı deneyimi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid">
+      <div class="feature reveal" data-anim="fade-up">
+        <div class="icon">🫘</div>
+        <h4>Seçkin Çekirdekler</h4>
+        <p>Bölge ve çiftlik seçimleriyle iz bırakan aromalar.</p>
+      </div>
+      <div class="feature reveal" data-anim="fade-up">
+        <div class="icon">🎵</div>
+        <h4>Yumuşak Müzikler</h4>
+        <p>Günün ritmine eşlik eden loş ve keyifli tınılar.</p>
+      </div>
+      <div class="feature reveal" data-anim="fade-up">
+        <div class="icon">🌿</div>
+        <h4>Doğal Dokular</h4>
+        <p>Ahşap, keten ve seramiklerle tamamlanan bir mekan hissi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section id="reviews" class="section bg-light">
+    <div class="container">
+      <div class="section-header reveal" data-anim="fade-up">
+        <span class="sub-title">Sizden Gelenler</span>
+        <h2>Mutlu Müdavimler</h2>
+        <p>Bizi misafirlerimizden dinleyin.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card reveal" data-anim="fade-up">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Şehrin gürültüsünden kaçıp sığınabileceğiniz harika bir liman. Kahveleri de ortam
+            kadar sıcak."</p>
+          <div class="review-author">
+            <span class="author-name">Ayşe Y.</span>
+            <span class="author-role">Müdavim</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal" data-anim="fade-up" style="transition-delay: 100ms;">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"San Sebastian cheesecake favorim! Arkadaşlarımla gelip saatlerce sohbet ettiğimiz tek
+            mekan."</p>
+          <div class="review-author">
+            <span class="author-name">Mehmet K.</span>
+            <span class="author-role">Öğrenci</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal" data-anim="fade-up" style="transition-delay: 200ms;">
+          <div class="stars">★★★★☆</div>
+          <p class="review-text">"Çalışmak için ideal bir atmosfer. İnternet hızlı, kahve lezzetli ve müzikler asla
+            rahatsız etmiyor."</p>
+          <div class="review-author">
+            <span class="author-name">Selin D.</span>
+            <span class="author-role">Freelancer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-header reveal" data-anim="fade-up">
+        <span class="sub-title">Atmosfer</span>
+        <h2>Facer'dan Kareler</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" data-anim="zoom">
+          <img src="qr_menu_photos/kahve.jpg" onerror="this.src='photos/kafeici.jpeg'" alt="Facer Atmosfer"
+            loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-anim="zoom">
+          <img src="qr_menu_photos/chemex.webp" alt="3. Dalga Kahve" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-anim="zoom">
+          <img src="qr_menu_photos/browni.jpeg" alt="Tatlılarımız" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-anim="zoom">
+          <img src="qr_menu_photos/mocha.avif" alt="Mocha Keyfi" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="section bg-light">
+    <div class="container">
+      <div class="section-header reveal" data-anim="fade-up">
+        <span class="sub-title">Takvim</span>
+        <h2>Etkinlikler</h2>
+      </div>
+      <div class="events-list">
+        <div class="event-card reveal" data-anim="fade-left">
+          <div class="event-date">
+            <span class="day">15</span>
+            <span class="month">Ağu</span>
+          </div>
+          <div class="event-info">
+            <h4>Akustik Gitar Gecesi</h4>
+            <p>Canlı müzik eşliğinde kahve keyfi.</p>
+            <span class="event-time">20:00 - 22:00</span>
+          </div>
+        </div>
+        <div class="event-card reveal" data-anim="fade-left" style="transition-delay: 100ms;">
+          <div class="event-date">
+            <span class="day">22</span>
+            <span class="month">Ağu</span>
+          </div>
+          <div class="event-info">
+            <h4>Kahve Tadım Atölyesi</h4>
+            <p>Farklı çekirdekleri tanıma ve tatma deneyimi.</p>
+            <span class="event-time">14:00 - 16:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="parallax low" data-bg="photos/kafeici2.webp">
+
+    <div class="overlay strong"></div>
+    <div class="parallax-content">
+      <h3 class="reveal" data-anim="fade-up">Her yudumda sıcaklık</h3>
+      <p class="reveal" data-anim="fade-up">Günün telaşından uzaklaş, kendine küçük bir mola ver.</p>
+    </div>
+  </section>
+
+  <!-- Contact & Reservation Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header reveal" data-anim="fade-up">
+        <span class="sub-title">Bize Ulaşın</span>
+        <h2>Rezervasyon & İletişim</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="reservation-form reveal" data-anim="fade-right">
+          <h3>Masa Ayırtın</h3>
+          <p>Özel günleriniz veya kalabalık gruplar için yerinizi şimdiden hazırlayalım.</p>
+          <form id="reservationForm">
+            <div class="form-group">
+              <input type="text" placeholder="Adınız Soyadınız" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Telefon Numaranız" required>
+            </div>
+            <div class="form-row">
+              <input type="date" required>
+              <input type="time" required>
+            </div>
+            <div class="form-group">
+              <select>
+                <option value="">Kişi Sayısı</option>
+                <option value="1">1 Kişi</option>
+                <option value="2">2 Kişi</option>
+                <option value="3">3 Kişi</option>
+                <option value="4">4+ Kişi</option>
+              </select>
+            </div>
+            <button type="submit" class="btn primary full-width">Rezervasyon Yap</button>
+          </form>
+        </div>
+
+        <div class="map-container reveal" data-anim="fade-left">
+          <!-- Google Maps Embed -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.650490011964!2d28.97835891541334!3d41.00823797929987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9be92011c27%3A0x236e6f6f37444fae!2sSultanahmet%20Meydan%C4%B1!5e0!3m2!1str!2str!4v1631526845341!5m2!1str!2str"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h4>İletişim</h4>
+        <p>Adres: Şehir Merkezi, Facer Sokak No: 7</p>
+        <p>Telefon: 0 (xxx) xxx xx xx</p>
+      </div>
+      <div>
+        <h4>Çalışma Saatleri</h4>
+        <p>Hafta içi: 08:00 – 22:00</p>
+        <p>Hafta sonu: 09:00 – 23:00</p>
+      </div>
+      <div>
+        <h4>Bizi Takip Et</h4>
+        <div class="social">
+          <a class="social-btn instagram" href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a class="social-btn facebook" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path d="M15 3h-3a5 5 0 00-5 5v3H5v4h2v6h4v-6h3l1-4h-4V8a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+          <a class="social-btn x" href="#" aria-label="X">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4l16 16M20 4L4 20"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- QR menü seçim modalı -->
+  <div id="qrModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+      <button class="modal-close" aria-label="Kapat">✕</button>
+      <h3 id="qrModalTitle">Menü Seçimi</h3>
+      <p>Fotoğraflı ya da fotoğrafsız menüden birini açın.</p>
+      <div class="modal-actions">
+        <a class="btn primary" href="menu-photo.html">Fotoğraflı Menü</a>
+        <a class="btn" href="menu.html">Fotoğrafsız Menü</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav backdrop overlay -->
+  <div id="navBackdrop" class="nav-backdrop"></div>
+
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Yukarıya Git" title="Yukarıya Git">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Ambient Audio - Single source only -->
+  <audio id="ambientAudio" src="back music.mp3" loop preload="none"></audio>
+  <script src="script.js"></script>
+</body>
+
+</html>

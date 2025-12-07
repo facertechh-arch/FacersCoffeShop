@@ -216,3 +216,133 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { rootMargin: '200px' });
   document.querySelectorAll('.parallax[data-bg]').forEach(el => bgObserver.observe(el));
 });
+
+// === RESERVATION FORM ===
+const reservationForm = document.getElementById('reservationForm');
+if (reservationForm) {
+    reservationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Gerçek backend olmadığı için başarılı simülasyonu
+        const btn = reservationForm.querySelector('button');
+        const originalText = btn.textContent;
+
+        btn.textContent = 'Gönderiliyor...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            alert('Rezervasyon talebiniz alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+            reservationForm.reset();
+            btn.textContent = 'Gönderildi ✓';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 2000);
+        }, 1000);
+    });
+}
+
+// === LANGUAGE SUPPORT ===
+const langBtn = document.getElementById('langBtn');
+const translations = {
+    tr: {
+        about: "Hakkımızda",
+        vibes: "Atmosfer",
+        qr: "QR Menü",
+        contact: "İletişim",
+        heroTitle: "Sıcak bir kahve molasına hoş geldiniz",
+        heroDesc: "Şehrin kalbinde, iç ısıtan kahverengi tonlarda bir deneyim.",
+        heroBtn: "QR Menüye Git",
+        aboutTitle: "Biz Kimiz?",
+        aboutDesc: "Facer Coffe Shop, kaliteli çekirdeklerle özenle hazırlanmış kahveleri, dost canlısı bir atmosferde sunar.",
+        vibesTitle: "İç ısıtan kahverengi tema",
+        vibesDesc: "Doğal dokular, yumuşak ışıklar ve sakin renk paleti ile huzurlu bir ambiyans.",
+        signatureTitle: "İmza Lezzetler",
+        reviewsTitle: "Mutlu Müdavimler",
+        galleryTitle: "Facer'dan Kareler",
+        eventsTitle: "Etkinlikler",
+        contactTitle: "Rezervasyon & İletişim",
+        formTitle: "Masa Ayırtın",
+        formDesc: "Özel günleriniz veya kalabalık gruplar için yerinizi şimdiden hazırlayalım.",
+        formName: "Adınız Soyadınız",
+        formPhone: "Telefon Numaranız",
+        formBtn: "Rezervasyon Yap"
+    },
+    en: {
+        about: "About Us",
+        vibes: "Vibes",
+        qr: "QR Menu",
+        contact: "Contact",
+        heroTitle: "Welcome to a Warm Coffee Break",
+        heroDesc: "An experience in warm brown tones in the heart of the city.",
+        heroBtn: "Go to QR Menu",
+        aboutTitle: "Who Are We?",
+        aboutDesc: "Facer Coffee Shop serves carefully prepared coffees with quality beans in a friendly atmosphere.",
+        vibesTitle: "Heartwarming Brown Theme",
+        vibesDesc: "A peaceful ambiance with natural textures, soft lights and a calm color palette.",
+        signatureTitle: "Signature Flavors",
+        reviewsTitle: "Happy Regulars",
+        galleryTitle: "Moments from Facer",
+        eventsTitle: "Events",
+        contactTitle: "Reservation & Contact",
+        formTitle: "Book a Table",
+        formDesc: "Let us prepare your place in advance for your special days or large groups.",
+        formName: "Full Name",
+        formPhone: "Phone Number",
+        formBtn: "Make Reservation"
+    }
+};
+
+let currentLang = 'tr';
+
+if (langBtn) {
+    langBtn.addEventListener('click', () => {
+        currentLang = currentLang === 'tr' ? 'en' : 'tr';
+        const t = translations[currentLang];
+        const langText = langBtn.querySelector('.lang-text');
+        if (langText) langText.textContent = currentLang.toUpperCase();
+
+        // Navigation
+        document.querySelector('a[href="#about"]').textContent = t.about;
+        document.querySelector('a[href="#vibes"]').textContent = t.vibes;
+        document.querySelectorAll('.qr-link').forEach(l => { if (l.tagName === 'A' && l.classList.contains('nav-link')) l.textContent = t.qr; }); // Nav link specific check might be needed
+        document.querySelector('a[href="#contact"]').textContent = t.contact;
+
+        // Hero
+        document.querySelector('.hero h2').textContent = t.heroTitle;
+        document.querySelector('.hero p').textContent = t.heroDesc;
+        document.querySelector('.hero .btn').textContent = t.heroBtn;
+
+        // About
+        const aboutCard = document.querySelector('#about .card:nth-child(1)');
+        if (aboutCard) {
+            aboutCard.querySelector('h3').textContent = t.aboutTitle;
+            aboutCard.querySelector('p').textContent = t.aboutDesc;
+        }
+
+        // Sections Headers
+        const sigHeader = document.querySelector('#signature .section-header');
+        if (sigHeader) sigHeader.querySelector('h2').textContent = t.signatureTitle;
+
+        const revHeader = document.querySelector('#reviews .section-header');
+        if (revHeader) revHeader.querySelector('h2').textContent = t.reviewsTitle;
+
+        const galHeader = document.querySelector('#gallery .section-header');
+        if (galHeader) galHeader.querySelector('h2').textContent = t.galleryTitle;
+
+        const evtHeader = document.querySelector('#events .section-header');
+        if (evtHeader) evtHeader.querySelector('h2').textContent = t.eventsTitle;
+
+        const conHeader = document.querySelector('#contact .section-header');
+        if (conHeader) conHeader.querySelector('h2').textContent = t.contactTitle;
+
+        // Form
+        const form = document.querySelector('.reservation-form');
+        if (form) {
+            form.querySelector('h3').textContent = t.formTitle;
+            form.querySelector('p').textContent = t.formDesc;
+            form.querySelector('input[type="text"]').placeholder = t.formName;
+            form.querySelector('input[type="tel"]').placeholder = t.formPhone;
+            form.querySelector('button').textContent = t.formBtn;
+        }
+    });
+}
